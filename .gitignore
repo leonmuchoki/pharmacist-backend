@@ -1,0 +1,8 @@
+node_modules
+.env
+npm-debug.log
+config/db.config.js
+
+# Local development
+*.env
+*.dev
