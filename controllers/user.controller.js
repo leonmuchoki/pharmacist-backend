@@ -138,3 +138,13 @@ exports.setLastLogin = async(req, res) => {
     res.status(400).send({ message: err });
   }
 };
+
+exports.getAllUsers = (req, res) => {
+  return User.findAll().then((users) => {
+      return res.status(200).send({users});
+})
+.catch((err) => {
+  console.log(">> Error while loading  users: ", err);
+  res.status(500).send({ message: err.message });
+  });;
+};

@@ -11,8 +11,6 @@ require('dotenv').config();
 const { swaggerOptions } = require("./swagger/options")
 const { createInitialRoles } = require("./utilities/Roles");
 
-const containerName = "filecontainer";
-
 const app = express();
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -52,6 +50,7 @@ app.get("/", (req, res) => {
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/inventory.routes')(app);
+require('./routes/role.routes')(app);
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
