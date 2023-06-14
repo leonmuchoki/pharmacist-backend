@@ -32,8 +32,8 @@ exports.findInventoryId = (req, res) => {
 };
 
 exports.getAllInventory = (req, res) => {
-    return Issue.findAll().then((issues) => {
-        return res.status(200).send({issues});
+    return Inventory.findAll().then((inventories) => {
+        return res.status(200).send({inventories});
 })
 .catch((err) => {
     console.log(">> Error while loading  Inventory: ", err);

@@ -12,18 +12,18 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         },
         created_at: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
+            type: Sequelize.DATE,
+            defaultValue: Sequelize.NOW
         }, 
         created_by: {
-            type: DataTypes.INTEGER 
+            type: Sequelize.INTEGER 
         },
         updated_at: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW
+            type: Sequelize.DATE,
+            defaultValue: Sequelize.NOW
         },
         updated_by: {
-            type: DataTypes.INTEGER
+            type: Sequelize.INTEGER
         }
     });
     return InventorySale;
