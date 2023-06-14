@@ -19,7 +19,8 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       loyaltyPoints: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        defaultValue: 0
       }, 
       deleted: {
         type: Sequelize.BOOLEAN,

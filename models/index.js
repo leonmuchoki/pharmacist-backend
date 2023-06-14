@@ -65,4 +65,4 @@ db.inventorySale.belongsTo(db.customer, {
   as: "customer"
 });
 
-  module.exports = db;
+module.exports = db;
