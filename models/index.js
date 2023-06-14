@@ -37,16 +37,32 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
+db.customer = require("../models/customer.model.js")(sequelize, Sequelize);
+db.inventory = require("../models/inventory.model.js")(sequelize, Sequelize);
+db.inventorySale = require("../models/inventorySales.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
-    through: "user_roles",
+    through: "user_roles", 
     foreignKey: "roleId",
     otherKey: "userId"
   });
-  db.user.belongsToMany(db.role, {
-    through: "user_roles",
-    foreignKey: "userId",
-    otherKey: "roleId"
-  });
+
+db.user.belongsToMany(db.role, {
+  through: "user_roles",
+  foreignKey: "userId",
+  otherKey: "roleId"
+});
+
+db.inventory.hasMany(db.inventorySale, { as: "inventorySales" });
+db.inventorySale.belongsTo(db.inventory, {
+  foreignKey: "inventoryId",
+  as: "inventory"
+});
+
+db.customer.hasMany(db.inventorySale, { as: "inventorySales" });
+db.inventorySale.belongsTo(db.customer, {
+  foreignKey: "customerId",
+  as: "customer"
+});
 
   module.exports = db;

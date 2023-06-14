@@ -1,5 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     const Inventory = sequelize.define("inventory", {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+          },
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -12,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         quantity: {
             type: DataTypes.DECIMAL
+        },
+        discount: {
+            type: DataTypes.DECIMAL,
+            defaultValue: 0
         },
         deleted: {
             type: DataTypes.BOOLEAN,
