@@ -11,7 +11,7 @@ module.exports = function(app) {
   });
   
   app.post(
-    "/api/inventory",
+    "/api/inventorysale",
     [authJwt.verifyToken],
     controller.createInventorySale
   );

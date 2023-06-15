@@ -10,10 +10,12 @@ require('dotenv').config();
 
 const { swaggerOptions } = require("./swagger/options")
 const { createInitialRoles } = require("./utilities/Roles");
+const { createInitialUsers } = require("./utilities/Users");
+const { createInitialCustomer } = require("./utilities/Customer");
 
 const app = express();
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:3000"
 };
 app.use(cors(corsOptions));
 
@@ -37,11 +39,13 @@ db.sequelize.sync({force: true}).then(() => {
   console.log('Drop and Resync Db');
   //--initial();
   createInitialRoles();
+  createInitialUsers();
+  createInitialCustomer();
 }).catch((err) => {
   console.log(">> Error resyncing db: ", err);
 });
 
-//welcome
+//karibu
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to checkout system!" });
 });

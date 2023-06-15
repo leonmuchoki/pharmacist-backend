@@ -1,6 +1,7 @@
 const { DATE } = require("sequelize");
 const db = require("../models");
 const InventorySale = db.inventorySale;
+const Inventory = db.inventory;
 
 exports.createInventorySale = (req, res) => {
     InventorySale.create({
@@ -12,6 +13,17 @@ exports.createInventorySale = (req, res) => {
         quantity: req.body.quantity 
       })
         .then(inventorySale => {
+          //update inventory quantity
+          Inventory.findByPk(req.body.inventoryId).then((inv) => {
+            if(inv) {
+              let newQuantity = +inv.quantity - +req.body.quantity;
+              let updatedValues = {
+                quantity: newQuantity < 0 ? 0 : newQuantity
+              }
+              inv.update(updatedValues);
+            }
+          });
+
           res.send({ message: "inventory transaction posted successfully!", inventorySale });
         })
         .catch(err => {
